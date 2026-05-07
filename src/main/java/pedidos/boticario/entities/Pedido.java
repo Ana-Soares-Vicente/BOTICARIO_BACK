@@ -14,10 +14,9 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private String clienteNome;
-    private String fone;
     private Boolean pago;
+    @ManyToOne
+    private Cliente cliente;
 
     @ManyToOne
     private Produto produto;

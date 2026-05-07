@@ -18,4 +18,8 @@ public class PedidoController {
     public List<Pedido> listar() {
         return service.listar();
     }
+    @PostMapping
+    public Pedido salvar(@RequestBody Pedido pedido) {
+        return service.salvar(pedido);
+    }
 }

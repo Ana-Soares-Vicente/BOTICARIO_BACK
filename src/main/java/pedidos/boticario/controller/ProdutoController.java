@@ -18,4 +18,9 @@ public class ProdutoController {
     public List<Produto> listar() {
         return service.listar();
     }
+
+    @PostMapping
+    public Produto salvar(@RequestBody Produto produto) {
+        return service.salvar(produto);
+    }
 }
