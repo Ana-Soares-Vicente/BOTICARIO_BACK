@@ -2,6 +2,7 @@ package pedidos.boticario.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pedidos.boticario.dto.ClienteDTO;
 import pedidos.boticario.entities.Cliente;
 import pedidos.boticario.service.ClienteService;
 import java.util.List;
@@ -13,11 +14,27 @@ public class ClienteController {
     private ClienteService service;
 
     @GetMapping
-    public List<Cliente> listar(){
+    public List<ClienteDTO> listar(){
         return service.listar();
     }
     @PostMapping
     public Cliente salvar(@RequestBody Cliente cliente) {
+        return service.salvar(cliente);
+    }
+    @GetMapping("/{id}")
+    public Cliente buscarPorId(@PathVariable Long id) {
+        return service.buscarPorId(id);
+    }
+    @DeleteMapping("/{id}")
+    public void deletar(@PathVariable Long id) {
+        service.deletar(id);
+    }
+    @PutMapping("/{id}")
+    public Cliente atualizar(@PathVariable Long id,
+                             @RequestBody Cliente cliente) {
+
+        cliente.setId(id);
+
         return service.salvar(cliente);
     }
 }

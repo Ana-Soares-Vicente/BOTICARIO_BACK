@@ -2,6 +2,8 @@ package pedidos.boticario.entities;
 import javax.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "Pedido")
 @NoArgsConstructor
@@ -18,6 +20,13 @@ public class Pedido {
     @ManyToOne
     private Cliente cliente;
 
-    @ManyToOne
-    private Produto produto;
+    @OneToMany(mappedBy = "pedido")
+    private List<ItemPedido> itens;
+
+    public Double calcularLucroTotal() {
+
+        return itens.stream()
+                .mapToDouble(ItemPedido::calcularLucro)
+                .sum();
+    }
 }

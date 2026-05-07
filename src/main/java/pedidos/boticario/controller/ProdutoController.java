@@ -2,6 +2,8 @@ package pedidos.boticario.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pedidos.boticario.dto.ProdutoDTO;
+import pedidos.boticario.entities.Pedido;
 import pedidos.boticario.entities.Produto;
 import pedidos.boticario.service.ProdutoService;
 
@@ -15,12 +17,28 @@ public class ProdutoController {
     private ProdutoService service;
 
     @GetMapping
-    public List<Produto> listar() {
+    public List<ProdutoDTO> listar() {
         return service.listar();
     }
 
     @PostMapping
     public Produto salvar(@RequestBody Produto produto) {
+        return service.salvar(produto);
+    }
+    @GetMapping("/{id}")
+    public Produto buscarPorId(@PathVariable Long id) {
+        return service.buscarPorId(id);
+    }
+    @DeleteMapping("/{id}")
+    public void deletar(@PathVariable Long id) {
+        service.deletar(id);
+    }
+    @PutMapping("/{id}")
+    public Produto atualizar(@PathVariable Long id,
+                            @RequestBody Produto produto) {
+
+        produto.setId(id);
+
         return service.salvar(produto);
     }
 }
