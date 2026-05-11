@@ -1,6 +1,7 @@
 package pedidos.boticario.dto;
 
 import lombok.*;
+import pedidos.boticario.enums.StatusPedido;
 
 @Getter
 @Setter
@@ -11,7 +12,7 @@ public class PedidoDTO {
 
     private Long id;
 
-    private Boolean pago;
+    private StatusPedido status;
 
     private String clienteNome;
 }

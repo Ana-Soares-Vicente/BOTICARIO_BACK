@@ -34,7 +34,6 @@ public class ProdutoService {
                 .collect(Collectors.toList());
     }
 
-    @PostMapping
     public Produto salvar(@RequestBody Produto produto) {
         return repository.save(produto);
     }

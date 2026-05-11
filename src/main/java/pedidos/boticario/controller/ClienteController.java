@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.*;
 import pedidos.boticario.dto.ClienteDTO;
 import pedidos.boticario.entities.Cliente;
 import pedidos.boticario.service.ClienteService;
+
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -18,7 +20,7 @@ public class ClienteController {
         return service.listar();
     }
     @PostMapping
-    public Cliente salvar(@RequestBody Cliente cliente) {
+    public Cliente salvar(@Valid @RequestBody Cliente cliente) {
         return service.salvar(cliente);
     }
     @GetMapping("/{id}")

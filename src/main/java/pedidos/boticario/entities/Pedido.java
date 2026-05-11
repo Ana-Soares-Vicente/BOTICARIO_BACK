@@ -3,11 +3,13 @@ import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
+import pedidos.boticario.enums.StatusPedido;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name = "Pedido")
+@Table(name = "pedido")
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -18,13 +20,18 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Boolean pago;
+
+    @Enumerated(EnumType.STRING)
+    private StatusPedido status;
+
     @ManyToOne
     private Cliente cliente;
 
-    @ManyToMany(mappedBy = "pedido")
+    @OneToMany(mappedBy = "pedido")
     @JsonIgnoreProperties("pedido")
     private List<ItemPedido> itens;
+
+    private LocalDate dataPedido;
 
     public Double calcularLucroTotal() {
 

@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import pedidos.boticario.entities.ItemPedido;
 import pedidos.boticario.service.ItemPedidoService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,7 +21,7 @@ public class ItemPedidoController {
     }
 
     @PostMapping
-    public ItemPedido salvar(@RequestBody ItemPedido itemPedido) {
+    public ItemPedido salvar(@Valid @RequestBody ItemPedido itemPedido) {
         return service.salvar(itemPedido);
     }
 }

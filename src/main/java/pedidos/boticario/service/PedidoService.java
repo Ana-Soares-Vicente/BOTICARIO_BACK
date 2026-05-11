@@ -2,10 +2,9 @@ package pedidos.boticario.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import pedidos.boticario.dto.PedidoDTO;
-import pedidos.boticario.entities.Cliente;
+import pedidos.boticario.enums.StatusPedido;
 import pedidos.boticario.entities.Pedido;
 import pedidos.boticario.repository.PedidoRepository;
 
@@ -25,7 +24,7 @@ public class PedidoService {
         return pedidos.stream()
                 .map(pedido -> PedidoDTO.builder()
                         .id(pedido.getId())
-                        .pago(pedido.getPago())
+                        .status(pedido.getStatus())
                         .clienteNome(pedido.getCliente().getNome())
                         .build())
                 .collect(Collectors.toList());

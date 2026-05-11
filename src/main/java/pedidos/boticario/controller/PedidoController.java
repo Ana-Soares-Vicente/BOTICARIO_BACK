@@ -7,6 +7,7 @@ import pedidos.boticario.entities.Cliente;
 import pedidos.boticario.entities.Pedido;
 import pedidos.boticario.service.PedidoService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -21,7 +22,7 @@ public class PedidoController {
         return service.listar();
     }
     @PostMapping
-    public Pedido salvar(@RequestBody Pedido pedido) {
+    public Pedido salvar(@Valid @RequestBody Pedido pedido) {
         return service.salvar(pedido);
     }
 
